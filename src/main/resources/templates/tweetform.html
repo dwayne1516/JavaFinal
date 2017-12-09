@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+</head>
+<body>
+<form action="#"
+      th:action="@{/process}"
+      th:object="${tweet}"
+      method="post">
+    Name <input type="text" th:field="*{name}" />
+    <span th:if="${#fields.hasErrors('name')}"
+          th:errors="*{name}"></span><br />
+    Tweet:<input type="text" th:field="*{content}" />
+    <span th:if="${#fields.hasErrors('content')}"
+          th:errors="*{content}"></span><br />
+    Date:<input type="text" th:field="*{sentby}" />
+    <span th:if="${#fields.hasErrors('sentby')}"
+          th:errors="*{sentby}"></span><br />
+    <input th:text="${#temporals.format(localDateTime,'MMM dd, yyyy HH:mm')}"
+           th:if="${#fields.hasErrors('posteddate')}"
+           th:errors="*{posteddate}" /><br />
+    <input type="submit" value="Tweet" />
+</form>
+</body>
+</html>
